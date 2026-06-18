@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auraashè × Cluvion Services — Growth Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110E;
+    --gold:#C8A24A;
+    --gold-bright:#E6C878;
+    --garnet:#6E2A36;
+    --garnet-soft:rgba(110,42,54,0.08);
+    --cream:#F4ECD8;
+    --cream-dim:#CDC2A6;
+    --paper:#FAF6EC;
+    --paper-2:#F1EADA;
+    --charcoal:#2A2420;
+    --charcoal-dim:#6B6055;
+    --line-dark:rgba(200,162,74,0.35);
+    --line-paper:rgba(42,36,32,0.14);
+    --container:1140px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;font-size:17px;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.15;margin:0;color:inherit;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  .container{max-width:var(--container);margin:0 auto;padding:0 1.5rem;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px;}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:var(--ink);border-bottom:1px solid var(--line-dark);}
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:0.85rem 1.5rem;}
+  .nav__brand{font-weight:700;font-size:0.7rem;letter-spacing:0.08em;color:var(--cream);text-transform:uppercase;white-space:nowrap;}
+  .nav__brand-x{color:var(--gold);margin:0 0.35em;}
+  .nav__links{display:flex;gap:1.4rem;overflow-x:auto;scrollbar-width:none;}
+  .nav__links::-webkit-scrollbar{display:none;}
+  .nav__links a{font-size:0.78rem;letter-spacing:0.04em;color:var(--cream-dim);white-space:nowrap;padding:0.3rem 0;border-bottom:1px solid transparent;transition:color .15s,border-color .15s;}
+  .nav__links a:hover,.nav__links a:focus-visible{color:var(--gold-bright);border-color:var(--gold);}
+
+  /* EYEBROW */
+  .eyebrow{font-weight:700;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--garnet);margin:0 0 0.9rem;}
+  .eyebrow--hero{color:var(--gold-bright);text-align:center;}
+
+  /* HERO */
+  .hero{
+    background:
+      radial-gradient(circle at 18% 12%, rgba(200,162,74,0.10), transparent 45%),
+      radial-gradient(circle at 85% 88%, rgba(110,42,54,0.18), transparent 50%),
+      var(--ink);
+    color:var(--cream);
+    padding:clamp(3.5rem,8vw,6rem) 0 clamp(3rem,7vw,5rem);
+    text-align:center;
+  }
+  .hero__title{font-size:clamp(2.1rem,4.4vw + 1rem,3.6rem);font-weight:600;color:var(--cream);max-width:17ch;margin:0 auto 1.3rem;}
+  .hero__title em{font-style:italic;font-weight:500;color:var(--gold-bright);}
+  .hero__subtitle{font-size:clamp(1.02rem,0.4vw + 1rem,1.2rem);color:var(--cream-dim);max-width:44ch;margin:0 auto 1.6rem;line-height:1.65;}
+  .hero__byline{font-size:0.85rem;letter-spacing:0.05em;color:var(--gold);text-transform:uppercase;margin-bottom:3rem;}
+  .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;max-width:880px;margin:0 auto;text-align:left;}
+  .placard{position:relative;padding:1.4rem 1.5rem;background:rgba(244,236,216,0.04);border:1px solid rgba(244,236,216,0.12);}
+  .placard::before,.placard::after{content:'';position:absolute;width:13px;height:13px;border-color:var(--gold);}
+  .placard::before{top:-1px;left:-1px;border-top:1.5px solid;border-left:1.5px solid;}
+  .placard::after{bottom:-1px;right:-1px;border-bottom:1.5px solid;border-right:1.5px solid;}
+  .placard__label{font-size:0.66rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem;}
+  .placard__value{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:600;color:var(--cream);margin-bottom:0.4rem;}
+  .placard__caption{font-size:0.82rem;color:var(--cream-dim);line-height:1.5;}
+
+  @media (prefers-reduced-motion: no-preference){
+    @keyframes riseIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+    .hero .eyebrow--hero,.hero__title,.hero__subtitle,.hero__byline,.stat-row{animation:riseIn .8s ease both;}
+    .hero__title{animation-delay:.06s;}
+    .hero__subtitle{animation-delay:.14s;}
+    .hero__byline{animation-delay:.2s;}
+    .stat-row{animation-delay:.28s;}
+  }
+
+  /* GEM DIVIDER */
+  .gem-divider{height:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='30'%3E%3Crect x='18' y='11' width='8' height='8' fill='none' stroke='%23C8A24A' stroke-width='1.3' transform='rotate(45 22 15)'/%3E%3C/svg%3E");background-repeat:repeat-x;background-position:center;opacity:0.85;}
+
+  /* SECTIONS */
+  .lot{padding:clamp(3rem,6vw,4.5rem) 0;scroll-margin-top:80px;}
+  .lot__head{max-width:700px;margin:0 0 2.2rem;}
+  .lot__title{font-size:clamp(1.6rem,1.6vw + 1rem,2.3rem);color:var(--ink);margin-bottom:0.7rem;}
+  .lot__intro{font-size:1rem;color:var(--charcoal-dim);line-height:1.65;max-width:66ch;}
+
+  /* FACT GRID */
+  .fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line-paper);border:1px solid var(--line-paper);margin-bottom:2rem;}
+  .fact{background:var(--paper-2);padding:1.2rem 1.4rem;}
+  .fact__label{font-size:0.66rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--garnet);margin-bottom:0.45rem;}
+  .fact__value{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:500;color:var(--ink);}
+
+  /* CALLOUT */
+  .callout{border-left:3px solid var(--garnet);background:var(--garnet-soft);padding:1.4rem 1.7rem;}
+  .callout__label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--garnet);margin-bottom:0.6rem;font-weight:700;}
+  .callout__title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--ink);margin-bottom:0.6rem;}
+  .callout__body{color:var(--charcoal);line-height:1.65;max-width:66ch;}
+
+  /* TREND GRID */
+  .trend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.3rem;}
+  .trend-card{background:var(--paper-2);padding:1.4rem 1.5rem;border-top:2px solid var(--gold);transition:transform .18s,box-shadow .18s;}
+  .trend-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(42,36,32,0.08);}
+  .trend-card__title{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;}
+  .trend-card__body{font-size:0.92rem;color:var(--charcoal-dim);line-height:1.55;}
+
+  /* TIER GRID */
+  .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3rem;margin-bottom:1.8rem;}
+  .tier-card{background:var(--paper-2);padding:1.4rem 1.6rem;transition:transform .18s,box-shadow .18s;}
+  .tier-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(42,36,32,0.08);}
+  .tier-card__num{font-family:'Fraunces',serif;font-size:0.76rem;font-weight:600;color:var(--gold);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.4rem;}
+  .tier-card__title{font-family:'Fraunces',serif;font-size:1.12rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;}
+  .tier-card__names{font-size:0.76rem;letter-spacing:0.03em;color:var(--garnet);margin-bottom:0.6rem;font-weight:600;}
+  .tier-card__body{font-size:0.9rem;color:var(--charcoal-dim);line-height:1.55;}
+  .opportunity-line{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.1rem,1vw + 1rem,1.35rem);color:var(--ink);border-top:1px solid var(--line-paper);border-bottom:1px solid var(--line-paper);padding:1.4rem 0;max-width:62ch;line-height:1.5;}
+
+  /* MOVE GRID */
+  .move-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem;}
+  .move-card{background:var(--paper-2);padding:1.3rem 1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:transform .18s,box-shadow .18s;}
+  .move-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(42,36,32,0.08);}
+  .move-card__num{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--gold);flex-shrink:0;line-height:1;}
+  .move-card__title{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:0.3rem;}
+  .move-card__body{font-size:0.9rem;color:var(--charcoal-dim);line-height:1.5;}
+
+  /* PILLAR GRID */
+  .pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem;margin-bottom:2.2rem;}
+  .pillar-card{background:var(--paper-2);padding:1.2rem 1.4rem;border-left:3px solid var(--garnet);}
+  .pillar-card__source{display:block;font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:0.4rem;}
+  .pillar-card__title{font-family:'Fraunces',serif;font-size:1.02rem;font-weight:600;color:var(--ink);margin-bottom:0.35rem;}
+  .pillar-card__body{font-size:0.9rem;color:var(--charcoal-dim);line-height:1.5;}
+
+  /* MIX BAR */
+  .mix-bar-wrap{margin-bottom:2.2rem;}
+  .mix-bar-label{font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--charcoal-dim);margin-bottom:0.7rem;}
+  .mix-bar{display:flex;height:32px;width:100%;overflow:hidden;border:1px solid var(--line-paper);}
+  .mix-seg{display:flex;align-items:center;justify-content:center;font-size:0.64rem;font-weight:700;letter-spacing:0.02em;color:var(--paper);text-transform:uppercase;}
+  .mix-legend{display:flex;flex-wrap:wrap;gap:1rem;margin-top:0.7rem;font-size:0.76rem;color:var(--charcoal-dim);}
+  .mix-legend .dot{display:inline-block;width:8px;height:8px;margin-right:0.4rem;border-radius:50%;vertical-align:middle;}
+
+  /* TABLES */
+  .table-wrap{overflow-x:auto;margin-bottom:1rem;}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;min-width:520px;}
+  thead th{background:var(--ink);color:var(--cream);text-align:left;padding:0.7rem 1rem;font-weight:600;font-size:0.74rem;letter-spacing:0.04em;text-transform:uppercase;}
+  tbody td{padding:0.7rem 1rem;border-bottom:1px solid var(--line-paper);color:var(--charcoal);}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+  tbody td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;}
+
+  /* PHASE BLOCKS */
+  .phase-list{display:flex;flex-direction:column;gap:1.3rem;margin-bottom:1.6rem;}
+  .phase-block{display:grid;grid-template-columns:60px 1fr;gap:1.2rem;padding-bottom:1.3rem;border-bottom:1px solid var(--line-paper);}
+  .phase-block:last-child{border-bottom:none;padding-bottom:0;}
+  .phase-block__num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:600;color:var(--gold);line-height:1;}
+  .phase-block__title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+  .phase-block__when{font-size:0.74rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--garnet);margin-bottom:0.45rem;font-weight:700;}
+  .phase-block__body{font-size:0.92rem;color:var(--charcoal-dim);line-height:1.55;max-width:62ch;}
+  .bench-note{background:var(--paper-2);border:1px solid var(--line-paper);padding:1.1rem 1.4rem;font-size:0.88rem;color:var(--charcoal-dim);line-height:1.55;max-width:68ch;}
+
+  /* PACKAGES */
+  .package-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-bottom:2rem;}
+  .package-card{background:var(--paper-2);padding:1.8rem 1.8rem;border:1px solid var(--line-paper);transition:transform .18s,box-shadow .18s;}
+  .package-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(42,36,32,0.1);}
+  .package-card--featured{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold);}
+  .package-card__tag{display:inline-block;background:var(--garnet);color:var(--cream);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.28rem 0.65rem;margin-bottom:0.9rem;font-weight:700;}
+  .package-card__name{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem;}
+  .package-card__price{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;color:var(--ink);margin-bottom:0.15rem;}
+  .package-card__price span{font-family:'Manrope',sans-serif;font-size:0.82rem;font-weight:500;color:var(--charcoal-dim);}
+  .package-card__spend{font-size:0.82rem;color:var(--garnet);font-weight:600;margin-bottom:1.1rem;}
+  .package-card__list{display:flex;flex-direction:column;gap:0.45rem;}
+  .package-card__list li{font-size:0.9rem;color:var(--charcoal);line-height:1.45;padding-left:1.1rem;position:relative;}
+  .package-card__list li::before{content:'—';position:absolute;left:0;color:var(--gold);}
+
+  .note-block{background:var(--paper-2);border-left:3px solid var(--gold);padding:1.1rem 1.4rem;font-size:0.88rem;color:var(--charcoal-dim);line-height:1.55;}
+
+  /* ROADMAP */
+  .roadmap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.3rem;}
+  .roadmap-block{background:var(--paper-2);padding:1.3rem 1.5rem;border-top:2px solid var(--garnet);}
+  .roadmap-block__days{font-family:'Fraunces',serif;font-size:0.74rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--garnet);margin-bottom:0.25rem;}
+  .roadmap-block__title{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:0.7rem;}
+  .roadmap-block__list li{font-size:0.86rem;color:var(--charcoal-dim);line-height:1.5;padding-left:1rem;position:relative;margin-bottom:0.4rem;}
+  .roadmap-block__list li::before{content:'·';position:absolute;left:0;color:var(--gold);font-weight:700;}
+
+  /* FOOTER */
+  .footer{background:var(--ink);color:var(--cream-dim);padding:clamp(2.6rem,5vw,3.6rem) 0 2rem;text-align:center;}
+  .footer__cta{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.3rem,1.4vw + 1rem,1.7rem);color:var(--cream);margin-bottom:1.8rem;}
+  .footer__sig{margin-bottom:1.8rem;}
+  .footer__sig-name{font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-bright);font-weight:700;margin-bottom:0.5rem;}
+  .footer__sig-fill{font-size:0.85rem;color:var(--cream-dim);font-style:italic;}
+  .footer__sources{font-size:0.74rem;color:var(--charcoal-dim);max-width:60ch;margin:0 auto;line-height:1.55;border-top:1px solid rgba(244,236,216,0.1);padding-top:1.4rem;}
+
+  @media print{
+    .nav{display:none;}
+    .hero,.footer{background:#fff !important;color:#000 !important;}
+    .hero *,.footer *{color:#000 !important;}
+    .placard,.placard::before,.placard::after{border-color:#999 !important;background:#fff !important;}
+  }
+  @media (max-width:640px){
+    .phase-block{grid-template-columns:42px 1fr;}
+    .lot{padding:2.2rem 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__brand">Auraashè<span class="nav__brand-x">×</span>Cluvion Services</div>
+    <div class="nav__links">
+      <a href="#snapshot">Today</a>
+      <a href="#market">Market</a>
+      <a href="#competitors">Field</a>
+      <a href="#strategy">Strategy</a>
+      <a href="#content">Content</a>
+      <a href="#ads">Ads</a>
+      <a href="#investment">Invest</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <p class="eyebrow eyebrow--hero">Confidential · Prepared Exclusively for Auraashè</p>
+    <h1 class="hero__title">A Growth Proposal for <em>Auraashè</em></h1>
+    <p class="hero__subtitle">Instagram content and Meta Ads built around what actually sells a handcrafted clutch: proof it's handmade, and a clear path to buy.</p>
+    <p class="hero__byline">Prepared by Cluvion Services · June 18, 2026</p>
+    <div class="stat-row">
+      <div class="placard">
+        <p class="placard__label">Global Clutch Category</p>
+        <p class="placard__value">$6.3B → $8.2B</p>
+        <p class="placard__caption">Projected market growth through 2032</p>
+      </div>
+      <div class="placard">
+        <p class="placard__label">The Auraashè Catalogue</p>
+        <p class="placard__value">53 Designs</p>
+        <p class="placard__caption">Handcrafted pieces, priced $40–$135</p>
+      </div>
+      <div class="placard">
+        <p class="placard__label">Client Relationships</p>
+        <p class="placard__value">500+</p>
+        <p class="placard__caption">Happy clients to date, by Auraashè's own count</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="lot" id="snapshot">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 01 — Where Things Stand Today</p>
+        <h2 class="lot__title">Auraashè Today</h2>
+        <p class="lot__intro">A one-year-old, founder-led brand making handcrafted crystal, pearl, and kundan clutches — 53 designs, $40–$135, sold through Wix, Instagram, Facebook, and WhatsApp. 500+ client relationships already built. What's needed now is reach and conversion, not reinvention.</p>
+      </div>
+
+      <div class="fact-grid">
+        <div class="fact"><p class="fact__label">Founder</p><p class="fact__value">Shilpa Malik</p></div>
+        <div class="fact"><p class="fact__label">Based In</p><p class="fact__value">Bothell, Washington</p></div>
+        <div class="fact"><p class="fact__label">Live Since</p><p class="fact__value">2025</p></div>
+        <div class="fact"><p class="fact__label">Catalogue</p><p class="fact__value">53 designs, $40–$135</p></div>
+        <div class="fact"><p class="fact__label">Channels</p><p class="fact__value">Wix · Instagram · Facebook · WhatsApp</p></div>
+        <div class="fact"><p class="fact__label">Client Relationships</p><p class="fact__value">500+</p></div>
+      </div>
+
+      <div class="callout">
+        <p class="callout__label">The Key Finding</p>
+        <h3 class="callout__title">Every product page ends in &ldquo;Enquire Now,&rdquo; not checkout.</h3>
+        <p class="callout__body">Every sale today closes by hand over WhatsApp or email. That's fine for a boutique catalogue — but it's why the Meta Ads in this plan run on Messages/Leads objectives instead of Purchases (Lot 06), and why fixing it is Move 01 in Lot 04.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="market">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 02 — The Market Right Now</p>
+        <h2 class="lot__title">A Steady, Growing Category</h2>
+        <p class="lot__intro">The global clutch market is growing from $6.3B to $8.2B by 2032 — a steady 4.4% a year, inside a $78B handbag market where the premium tier is outgrowing the mass market. All of it favors a small, premium brand like Auraashè.</p>
+      </div>
+
+      <div class="trend-grid">
+        <div class="trend-card">
+          <h3 class="trend-card__title">Premiumization</h3>
+          <p class="trend-card__body">Shoppers are trading up — premium is growing faster than mass market, and &ldquo;affordable luxury&rdquo; is exactly Auraashè's lane.</p>
+        </div>
+        <div class="trend-card">
+          <h3 class="trend-card__title">Social &amp; Online Discovery</h3>
+          <p class="trend-card__body">&ldquo;Wedding guest clutch&rdquo; and &ldquo;crystal embellished clutch&rdquo; are now real, searched shopping categories — free distribution for a brand that shows up well in-feed.</p>
+        </div>
+        <div class="trend-card">
+          <h3 class="trend-card__title">The Occasion Economy</h3>
+          <p class="trend-card__body">Clutches sell against a calendar — weddings, prom, festive season, Diwali — so demand can be planned, not guessed at.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="competitors">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 03 — The Competitive Field</p>
+        <h2 class="lot__title">Four Tiers, One Open Gap</h2>
+        <p class="lot__intro">Mapping the field from heritage luxury to handmade sellers shows exactly where Auraashè can win.</p>
+      </div>
+
+      <div class="tier-grid">
+        <div class="tier-card">
+          <p class="tier-card__num">Tier 1</p>
+          <h3 class="tier-card__title">The Heritage Anchor</h3>
+          <p class="tier-card__names">Judith Leiber</p>
+          <p class="tier-card__body">Pioneered the crystal minaudière in 1963 — pieces now sit in the Met, priced from $695+. Auraashè borrows the look at a fraction of the price.</p>
+        </div>
+        <div class="tier-card">
+          <p class="tier-card__num">Tier 2</p>
+          <h3 class="tier-card__title">Premium Contemporary</h3>
+          <p class="tier-card__names">Gedebe · Karen Millen</p>
+          <p class="tier-card__body">Gedebe (~$945) and Karen Millen ($130–$190) show what &ldquo;premium but reachable&rdquo; looks like — Karen Millen's range nearly brackets Auraashè's own.</p>
+        </div>
+        <div class="tier-card">
+          <p class="tier-card__num">Tier 3</p>
+          <h3 class="tier-card__title">The Niche DTC Operator</h3>
+          <p class="tier-card__names">SHE Clutches</p>
+          <p class="tier-card__body">Built ~89K followers around one category, but its content is mostly product shots and reviews — light on styling or founder story.</p>
+        </div>
+        <div class="tier-card">
+          <p class="tier-card__num">Tier 4</p>
+          <h3 class="tier-card__title">The Fragmented Field</h3>
+          <p class="tier-card__names">Etsy &amp; Shopify sellers</p>
+          <p class="tier-card__body">Hundreds of sellers prove real demand, but inconsistent branding and no founder face leave the door open.</p>
+        </div>
+      </div>
+
+      <p class="opportunity-line">No brand owns &ldquo;beautifully photographed, story-led, $40–$135 crystal clutch&rdquo; in the U.S. — that's the gap this plan is built to claim.</p>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="strategy">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 04 — Eight Moves To Grow Sales</p>
+        <h2 class="lot__title">Where The Growth Comes From</h2>
+        <p class="lot__intro">No product redesign required.</p>
+      </div>
+
+      <div class="move-grid">
+        <div class="move-card"><p class="move-card__num">01</p><div><h3 class="move-card__title">Fix The Funnel</h3><p class="move-card__body">Turn on real Wix checkout, or design the WhatsApp flow on purpose instead of by accident.</p></div></div>
+        <div class="move-card"><p class="move-card__num">02</p><div><h3 class="move-card__title">Sell The Gap, Out Loud</h3><p class="move-card__body">Say it plainly: Auraashè sells the four-figure look at a fraction of the price.</p></div></div>
+        <div class="move-card"><p class="move-card__num">03</p><div><h3 class="move-card__title">Put Shilpa On Camera</h3><p class="move-card__body">A founder who shows up builds trust a faceless catalogue can't.</p></div></div>
+        <div class="move-card"><p class="move-card__num">04</p><div><h3 class="move-card__title">Shoot The Craft</h3><p class="move-card__body">Raw footage of hands setting crystals proves &ldquo;handcrafted&rdquo; better than any caption.</p></div></div>
+        <div class="move-card"><p class="move-card__num">05</p><div><h3 class="move-card__title">Build A Gifting Lane</h3><p class="move-card__body">Bridesmaid bundles and gift sets are the fastest lever for raising order value.</p></div></div>
+        <div class="move-card"><p class="move-card__num">06</p><div><h3 class="move-card__title">Seed Micro-Influencers</h3><p class="move-card__body">A handful of wedding &amp; South Asian fashion creators a month, in exchange for tagged content.</p></div></div>
+        <div class="move-card"><p class="move-card__num">07</p><div><h3 class="move-card__title">Plan By Occasion</h3><p class="move-card__body">Wedding season, prom, Diwali — load content four to six weeks ahead of each window.</p></div></div>
+        <div class="move-card"><p class="move-card__num">08</p><div><h3 class="move-card__title">Catch The Almost-Buyers</h3><p class="move-card__body">A bio-link offer plus retargeting brings back people who didn't enquire the first time.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="content">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 05 — The Instagram Program</p>
+        <h2 class="lot__title">Six Pillars, One Rhythm</h2>
+        <p class="lot__intro">Content comes from two sources: AI-generated visuals for everyday posts, and real footage — craft close-ups, founder moments — for whatever needs to feel human.</p>
+      </div>
+
+      <div class="pillar-grid">
+        <div class="pillar-card"><span class="pillar-card__source">Real Footage</span><h3 class="pillar-card__title">The Craft</h3><p class="pillar-card__body">Hand-embellishment up close. Builds trust, justifies the price.</p></div>
+        <div class="pillar-card"><span class="pillar-card__source">AI-Generated</span><h3 class="pillar-card__title">Styled For The Night</h3><p class="pillar-card__body">Outfit pairings and styling. Drives awareness and considered purchases.</p></div>
+        <div class="pillar-card"><span class="pillar-card__source">Real Footage</span><h3 class="pillar-card__title">Meet Shilpa</h3><p class="pillar-card__body">Founder story and voice. The highest-trust content type available.</p></div>
+        <div class="pillar-card"><span class="pillar-card__source">Real Footage</span><h3 class="pillar-card__title">Real Girls, Real Auraashè</h3><p class="pillar-card__body">Customer photos and reviews — proof that isn't the brand talking about itself.</p></div>
+        <div class="pillar-card"><span class="pillar-card__source">AI-Generated</span><h3 class="pillar-card__title">This Or That</h3><p class="pillar-card__body">Quick polls and picks. Keeps the account feeling alive.</p></div>
+        <div class="pillar-card"><span class="pillar-card__source">AI-Generated</span><h3 class="pillar-card__title">The Drop</h3><p class="pillar-card__body">New designs and restocks — the most conversion-focused pillar.</p></div>
+      </div>
+
+      <div class="mix-bar-wrap">
+        <p class="mix-bar-label">Monthly Content Mix</p>
+        <div class="mix-bar">
+          <div class="mix-seg" style="width:20%;background:#A88638;">20%</div>
+          <div class="mix-seg" style="width:20%;background:var(--gold);">20%</div>
+          <div class="mix-seg" style="width:15%;background:var(--charcoal-dim);">15%</div>
+          <div class="mix-seg" style="width:25%;background:var(--garnet);">25%</div>
+          <div class="mix-seg" style="width:20%;background:var(--ink);">20%</div>
+        </div>
+        <div class="mix-legend">
+          <span><span class="dot" style="background:#A88638;"></span>Awareness</span>
+          <span><span class="dot" style="background:#C8A24A;"></span>Craft &amp; Education</span>
+          <span><span class="dot" style="background:#6B6055;"></span>Engagement</span>
+          <span><span class="dot" style="background:#6E2A36;"></span>Trust &amp; Social Proof</span>
+          <span><span class="dot" style="background:#15110E;"></span>Conversion</span>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-bottom:1rem;">A Sample Week — The Content Calendar In Practice</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Pillar</th><th>Format</th><th>Source</th><th>The Idea</th></tr></thead>
+          <tbody>
+            <tr><td>Mon</td><td>The Drop</td><td>Reel</td><td>AI-Generated</td><td>Teaser for this week's piece</td></tr>
+            <tr><td>Tue</td><td>Styled For The Night</td><td>Carousel</td><td>AI-Generated</td><td>Outfit pairing</td></tr>
+            <tr><td>Wed</td><td>The Craft</td><td>Reel</td><td>Real Footage</td><td>Setting the crystals</td></tr>
+            <tr><td>Thu</td><td>This Or That</td><td>Story poll</td><td>AI-Generated</td><td>&ldquo;Gold or silver?&rdquo;</td></tr>
+            <tr><td>Fri</td><td>Real Girls, Real Auraashè</td><td>Reel</td><td>Real Footage</td><td>Customer review voiceover</td></tr>
+            <tr><td>Sat</td><td>Meet Shilpa</td><td>Reel</td><td>Real Footage</td><td>Why she started Auraashè</td></tr>
+            <tr><td>Sun</td><td>The Drop</td><td>Carousel</td><td>AI-Generated</td><td>Restock + styling tip</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="ads">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 06 — The Meta Ads Engine</p>
+        <h2 class="lot__title">Built For Today's Funnel</h2>
+        <p class="lot__intro">Three phases, and one decision that changes everything.</p>
+      </div>
+
+      <div class="phase-list">
+        <div class="phase-block">
+          <p class="phase-block__num">01</p>
+          <div>
+            <p class="phase-block__when">Weeks 1–2</p>
+            <h3 class="phase-block__title">Foundation</h3>
+            <p class="phase-block__body">Pixel, Conversions API, and the full catalogue set up in Meta. Campaigns run on Messages/Leads — not Purchases — since there's no checkout yet.</p>
+          </div>
+        </div>
+        <div class="phase-block">
+          <p class="phase-block__num">02</p>
+          <div>
+            <p class="phase-block__when">Weeks 3–8, Ongoing</p>
+            <h3 class="phase-block__title">The Funnel</h3>
+            <p class="phase-block__body">Prospecting and retargeting run in parallel, with creative refreshed monthly.</p>
+          </div>
+        </div>
+        <div class="phase-block">
+          <p class="phase-block__num">03</p>
+          <div>
+            <p class="phase-block__when">Once Checkout Exists</p>
+            <h3 class="phase-block__title">The Real Unlock</h3>
+            <p class="phase-block__body">Purchase-based Advantage+ Shopping and dynamic retargeting unlock — the single biggest lever available to this plan.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="bench-note">Fashion typically sees some of Meta's lowest cost-per-click of any category, and catalog retargeting tends to significantly outperform cold prospecting — figures throughout this plan are directional industry estimates, not guarantees.</p>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="investment">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">Lot 07 — The Investment</p>
+        <h2 class="lot__title">Two Ways To Start</h2>
+        <p class="lot__intro">Both cover Instagram content and Meta Ads management — the difference is volume and depth.</p>
+      </div>
+
+      <div class="package-grid">
+        <div class="package-card">
+          <p class="package-card__name">Essentials</p>
+          <p class="package-card__price">₹30,000<span>/month</span></p>
+          <p class="package-card__spend">+ ₹15,000–₹25,000/mo recommended ad spend</p>
+          <ul class="package-card__list">
+            <li>6 Reels a month — 3 AI-generated, 2 real craft, 1 real founder</li>
+            <li>8 feed posts a month — 5 AI-generated, 3 real</li>
+            <li>Stories, 4–5×/week</li>
+            <li>One Meta ad campaign (prospecting + retargeting)</li>
+            <li>Content calendar provided</li>
+            <li>Weekly strategy call &amp; monthly report</li>
+            <li>Month-one setup: Pixel, Business Suite, bio optimization</li>
+          </ul>
+        </div>
+        <div class="package-card package-card--featured">
+          <p class="package-card__tag">Most Complete</p>
+          <p class="package-card__name">Signature</p>
+          <p class="package-card__price">₹50,000<span>/month</span></p>
+          <p class="package-card__spend">+ ₹35,000–₹55,000/mo recommended ad spend</p>
+          <ul class="package-card__list">
+            <li>10 Reels a month — 5 AI-generated, 3 real craft, 2 real founder</li>
+            <li>12 feed posts a month — 7 AI-generated, 5 real</li>
+            <li>Daily Stories + weekly interactive series</li>
+            <li>1 in-house UGC-style video a month</li>
+            <li>Full ad funnel: prospecting + retargeting + seasonal pushes</li>
+            <li>Bi-weekly creative refresh</li>
+            <li>Content calendar provided</li>
+            <li>Weekly strategy call &amp; monthly report</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>What's Included</th><th>Essentials</th><th>Signature</th></tr></thead>
+          <tbody>
+            <tr><td>Reels / month</td><td>6</td><td>10</td></tr>
+            <tr><td>Reel mix</td><td>3 AI · 2 Craft · 1 Founder</td><td>5 AI · 3 Craft · 2 Founder</td></tr>
+            <tr><td>Feed posts / month</td><td>8 (5 AI · 3 Real)</td><td>12 (7 AI · 5 Real)</td></tr>
+            <tr><td>Stories</td><td>4–5×/week</td><td>Daily + weekly series</td></tr>
+            <tr><td>In-house UGC video</td><td>—</td><td>1/month</td></tr>
+            <tr><td>Ad structure</td><td>One campaign</td><td>Full funnel + seasonal</td></tr>
+            <tr><td>Creative refresh</td><td>Monthly</td><td>Bi-weekly</td></tr>
+            <tr><td>Content calendar</td><td>Included</td><td>Included</td></tr>
+            <tr><td>Strategy calls</td><td>Weekly</td><td>Weekly</td></tr>
+            <tr><td>Monthly fee</td><td>₹30,000</td><td>₹50,000</td></tr>
+            <tr><td>Recommended ad spend</td><td>₹15,000–₹25,000</td><td>₹35,000–₹55,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note-block">AI-generated reels and posts are produced to look fully realistic — used for styled, product, and concept content. Real footage is reserved for craft and founder moments, where authenticity matters most. Ad spend is paid directly to Meta by Auraashè — never marked up. Wix development (including checkout) is outside scope. Three-month minimum recommended; 10% off for quarterly prepayment.</div>
+    </div>
+  </section>
+
+  <div class="gem-divider" aria-hidden="true"></div>
+
+  <section class="lot" id="roadmap">
+    <div class="container">
+      <div class="lot__head">
+        <p class="eyebrow">The Next 90 Days</p>
+        <h2 class="lot__title">From Signed To Scaling</h2>
+      </div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-block">
+          <p class="roadmap-block__days">Days 1–7</p>
+          <h3 class="roadmap-block__title">Foundation</h3>
+          <ul class="roadmap-block__list">
+            <li>Brand &amp; competitor audit</li>
+            <li>Pixel &amp; catalog setup</li>
+            <li>Bio optimization</li>
+            <li>First shoot day scheduled</li>
+          </ul>
+        </div>
+        <div class="roadmap-block">
+          <p class="roadmap-block__days">Days 8–30</p>
+          <h3 class="roadmap-block__title">Launch</h3>
+          <ul class="roadmap-block__list">
+            <li>Content goes live on cadence</li>
+            <li>First ad campaigns go live</li>
+            <li>Baseline metrics set</li>
+          </ul>
+        </div>
+        <div class="roadmap-block">
+          <p class="roadmap-block__days">Days 31–60</p>
+          <h3 class="roadmap-block__title">Optimize</h3>
+          <ul class="roadmap-block__list">
+            <li>Double down on what's working</li>
+            <li>Expand retargeting</li>
+            <li>Produce first in-house UGC-style video</li>
+          </ul>
+        </div>
+        <div class="roadmap-block">
+          <p class="roadmap-block__days">Days 61–90</p>
+          <h3 class="roadmap-block__title">Scale</h3>
+          <ul class="roadmap-block__list">
+            <li>Revisit the checkout conversation</li>
+            <li>Build first seasonal campaign</li>
+            <li>Deliver 90-day report</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__cta">Let's get started.</p>
+    <div class="footer__sig">
+      <p class="footer__sig-name">Cluvion Services</p>
+      <p class="footer__sig-fill">[ add your name · email · phone here ]</p>
+    </div>
+    <p class="footer__sources">Market figures are directional estimates from 2026 industry research. Brand facts drawn from auraashe.com.</p>
+  </div>
+</footer>
+
+</body>
+</html>
